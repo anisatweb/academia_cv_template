@@ -42,6 +42,7 @@ All required packages are standard and should be included in full LaTeX distribu
 │   └── google_scholar_icon.png
 └── content/                    # Modular content files
     ├── contact.tex             # Contact information
+    ├── current_employment.tex  # Current position
     ├── education.tex           # Education history
     ├── fellowship.tex          # Fellowships and awards
     ├── publications.tex        # Publications list
@@ -105,12 +106,13 @@ Edit `preamble.tex` to customize:
 
 ### Basic Layout Commands
 
-- `\cvrow{Label}{Content}` - Creates a new row with a label in the left column
+- `\cvrow{Label}{Content}` - Creates a new row with a label in the left column (label appears in OliveGreen)
 - `\cvcont{Content}` - Continues content in the right column (no label)
 - `\cvblock{...}` - Wraps content in a block (handles spacing correctly)
 - `\cvline{Left}{Right}` - Creates a line with left-aligned and right-aligned text
-- `\cvspace` - Small vertical space within a section
-- `\cvgap` - Larger vertical space between sections
+- `\cvspace` - Small vertical space within a section (8pt)
+- `\cvgap` - Larger vertical space between sections (12pt)
+- `\cvlabel{Text}` - Creates a colored label (OliveGreen) for the left column
 
 ### Specialized Entry Commands
 
@@ -127,6 +129,9 @@ Edit `preamble.tex` to customize:
 }
 \cvcont{\pubentry{...}{...}{...}{...}\cvspace}  % Additional publications
 ```
+- Arguments: `{title}{pdf-url}{authors}{venue}`
+- Automatically includes reverse numbering and PDF icon
+- Use `\cvcont` for continuation entries (no new label)
 
 **Thesis** (`\thesisentry`):
 ```latex
@@ -139,6 +144,9 @@ Edit `preamble.tex` to customize:
     \cvspace
 }
 ```
+- Arguments: `{title}{pdf-url}{degree-info}`
+- Automatically includes "Your Name" in blue (edit in `preamble.tex` line 107)
+- Includes reverse numbering and PDF icon
 
 **Patents** (`\patententry`):
 ```latex
@@ -151,6 +159,8 @@ Edit `preamble.tex` to customize:
     \cvgap
 }
 ```
+- Arguments: `{title}{pdf-url}{inventors-and-details}`
+- Includes reverse numbering and PDF icon
 
 **Software** (`\softentry`):
 ```latex
@@ -162,12 +172,40 @@ Edit `preamble.tex` to customize:
     \cvgap
 }
 ```
+- Arguments: `{name}{description}`
+- Includes reverse numbering (no PDF icon)
+
+### Counter Commands
+
+These commands set the starting number for reverse-numbered lists:
+- `\setpubtotal{N}` - Set total number of publications
+- `\setthesistotal{N}` - Set total number of theses
+- `\setpatenttotal{N}` - Set total number of patents
+- `\setsoftwaretotal{N}` - Set total number of software entries
+
+**Important**: Call these commands BEFORE the first entry in each section.
 
 ### Helper Commands
 
-- `\safehref{url}{text}` - Creates a hyperlink (safe for use in tables)
+- `\safehref{url}{text}` - Creates a hyperlink (safe for use in tables, handles special characters)
 - `\pdficon` - Inserts PDF icon (requires `icons/pdf_icon.png`)
 - `\scholaricon` - Inserts Google Scholar icon (requires `icons/google_scholar_icon.png`)
+
+### Color Customization
+
+The template uses these colors by default:
+- **OliveGreen** - Section labels in left column
+- **RoyalBlue** - Links, URLs, and highlighted names
+
+To highlight your name in author lists:
+```latex
+{\color{RoyalBlue}Your Name}
+```
+
+To highlight special recognition:
+```latex
+{\color{red}\textbf{Spotlight}}
+```
 
 ## Tips and Best Practices
 
@@ -179,13 +217,25 @@ Edit `preamble.tex` to customize:
 
 3. **Co-first authorship**: Indicate with asterisks and a note:
    ```latex
-   {Author1*, {\color{RoyalBlue}Your Name*}, Author3\\(* indicates co-first authorship)}
+   {{\color{RoyalBlue}Your Name*}, Author2*, Author3\\(* indicates co-first authorship)}
    ```
 
-4. **Special recognition**: Highlight awards or distinctions:
+4. **Co-last authorship**: Indicate with daggers and a note:
+   ```latex
+   {Author1, Author2, {\color{RoyalBlue}Your Name†}, Author4†\\(† indicates joint last author)}
+   ```
+
+5. **Special recognition**: Highlight awards or distinctions:
    ```latex
    {Conference Name {\color{red}\textbf{Spotlight}}, Year}
    ```
+
+### Customizing Your Name in Thesis Entries
+
+The `\thesisentry` command automatically includes "Your Name" in blue. To customize this:
+1. Open `preamble.tex`
+2. Find line 107: `{\color{RoyalBlue}Your Name}\par`
+3. Replace "Your Name" with your actual name
 
 ### Icons
 
