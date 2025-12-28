@@ -1,0 +1,64 @@
+% ==================== main.tex ====================
+\documentclass[letterpaper,11pt]{article}
+\input{preamble.tex}
+
+\begin{document}
+
+% -------------------- Header --------------------
+\noindent{\Huge{\safehref{https://yourwebsite.com}{Your Name}}
+\hfill{\it\footnotesize Updated \today}}
+
+% -------------------- Contact --------------------
+\input{content/contact}
+
+% -------------------- Main two-column content --------------------
+\begin{longtable}{@{}L@{\hspace{\ColGap}}R@{}}
+
+% --- Current Employment (Optional) ---
+% Uncomment and customize if you have a current position
+% \cvrow{Current\\Employment}{%
+%   \cvblock{%
+%     \cvline{Your Title}{MM/YY -- present}
+%     \cvline{\textbf{Your Institution/Company}}{City, State/Country}
+%     \cvgap
+%   }%
+% }
+
+% --- Education ---
+\input{content/education}
+
+% --- Fellowships (Optional) ---
+% Uncomment if you have fellowships or awards to list
+% \input{content/fellowship}
+
+% --- Publications ---
+% Uncomment if you have publications
+% \input{content/publications}
+
+% --- Thesis (Optional) ---
+% Uncomment if you want to list your thesis/dissertation
+% \input{content/thesis}
+
+% --- Patents (Optional) ---
+% Uncomment if you have patents
+% \input{content/patents}
+
+% --- Scientific Software (Optional) ---
+% Uncomment if you have software contributions
+% \input{content/software}
+
+% --- Industry Experience (Optional) ---
+% Uncomment if you have industry experience
+% \input{content/industry_experience}
+
+% --- Academia Experience (Optional) ---
+% Uncomment if you have academic experience (TA, etc.)
+% \input{content/academia_experience}
+
+% --- Service (Optional) ---
+% Uncomment if you have service activities
+% \input{content/service}
+
+\end{longtable}
+\end{document}
+% ==================== end main.tex ====================
